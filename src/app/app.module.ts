@@ -8,7 +8,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
-import { FacebookModule } from 'ngx-facebook';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 //services
@@ -29,11 +28,11 @@ import { NavbarComponent } from './components/partials/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
-import { CompanyCreateComponent } from './components/company/company-create/company-create.component';
-import { CompanyListComponent } from './components/company/company-list/company-list.component';
-import { CompanyUpdateComponent } from './components/company/company-update/company-update.component';
 import { DialogDefaultComponent } from './components/dialogs/dialog-default/dialog-default.component';
 import { DialogRemoveComponent } from './components/dialogs/dialog-remove/dialog-remove.component';
+import { ListOfJobsComponent } from './components/jobs/list-of-jobs/list-of-jobs.component';
+import {MaterialModule} from "./material.module";
+
 
 @NgModule({
   declarations: [
@@ -44,11 +43,9 @@ import { DialogRemoveComponent } from './components/dialogs/dialog-remove/dialog
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    CompanyCreateComponent,
-    CompanyListComponent,
-    CompanyUpdateComponent,
     DialogDefaultComponent,
     DialogRemoveComponent,
+    ListOfJobsComponent,
 
   ],
   imports: [
@@ -57,22 +54,9 @@ import { DialogRemoveComponent } from './components/dialogs/dialog-remove/dialog
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    FacebookModule.forRoot(),
     FlexLayoutModule,
-    MatSidenavModule,
-    MatInputModule,
     ReactiveFormsModule,
-    MatDividerModule,
-    MatCardModule,
-    MatGridListModule,
-    MatSnackBarModule,
-    MatDialogModule
+    MaterialModule
   ],
   entryComponents: [
     DialogDefaultComponent,
@@ -86,7 +70,7 @@ import { DialogRemoveComponent } from './components/dialogs/dialog-remove/dialog
   bootstrap: [AppComponent],
 })
 
-export class AppModule { //https://stackoverflow.com/questions/39101865/angular-2-inject-dependency-outside-constructor
+export class AppModule { // https://stackoverflow.com/questions/39101865/angular-2-inject-dependency-outside-constructor
   constructor(injector: Injector) {
     AppInjector = injector;
   }

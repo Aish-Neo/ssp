@@ -1,0 +1,90 @@
+// Import Axis Base SCSS
+@import "~axis-components/styles/axis";
+
+.axis-fixed-footer {
+    border-top: 1px solid #d6d6d6;
+    bottom: 0px;
+    left: 0px;
+    padding: 16px 32px;
+    position: fixed;
+    -moz-transition: bottom 0.2s ease-in-out;
+    -webkit-transition: bottom 0.2s ease-in-out;
+    transition: bottom 0.2s ease-in-out;
+    width: 100%;
+    z-index: 9;
+  }
+
+  .axis-fixed-footer>.axis-btn-wrapper {
+    position: relative;
+    margin: -8px 0 0;
+  }
+
+  .axis-fixed-footer>.axis-footer-bg {
+    background: #fff;
+    bottom: 0px;
+    display: block;
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+
+  .axis-loading-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #fff;
+    transition: all 0.5s ease-in;
+  }
+
+  .axis-loading-backdrop.fade,
+  .axis-loading.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  .axis-loading-backdrop.fade.in {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+
+  .axis-loading.fade.in {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+
+  .axis-loading {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    outline: 0;
+  }
+
+  .axis-loading-wrapper {
+    text-align: center;
+    transition: all 0.5s ease-in;
+  }
+
+  .axis-loading-wrapper .material-icons {
+    margin-top: -64px;
+    font-size: 128px !important;
+    animation: spin 1.5s linear infinite;
+    color: #00a4e4;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(-360deg);
+    }
+
+  }
+  .no-padding-axis-button{
+    padding:0px;
+    border: none;
+}

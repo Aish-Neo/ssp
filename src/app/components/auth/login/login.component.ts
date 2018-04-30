@@ -27,22 +27,22 @@ export class LoginComponent implements OnInit {
   });
 
   getInputErrorMessage(input_name:string){
-    var err_message:string = '';
-    if(this.loginForm.get(input_name).hasError('required')) {
-      if(input_name=='unique'){
+    let err_message:string = '';
+    if (this.loginForm.get(input_name).hasError('required')) {
+      if (input_name == 'unique'){
         err_message = 'You must enter an Email or Phone number.';
       }else{
         err_message = 'You must enter a Password.';
       }
     }
-    if(this.loginForm.get(input_name).hasError('custom')) {
+    if (this.loginForm.get(input_name).hasError('custom')) {
       err_message = this.loginForm.get(input_name).getError('custom');
     }
 
     return err_message;
   }
 
-  throwInputError(input_name:string, message:string){
+  throwInputError(input_name: string, message: string){
     this.loginForm.get(input_name).setErrors({custom: message});
   }
 
@@ -53,18 +53,18 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(){
     var data = {
-      unique_key    :this.user_info.unique,
-      password      :this.user_info.password,
+      unique_key : this.user_info.unique,
+      password : this.user_info.password,
     };
 
-    this.register===false ? this.login(data) : this.create(data);
+    this.register === false ? this.login(data) : this.create(data);
 
     return;
   }
 
-  onTryLogin(){
+  onTryLogin() {
     this.register = false;
-    this.title="Log in / Register";
+    this.title = 'Log in / Register';
     let unique = this.user_info.unique;
     this.loginForm.reset({unique:unique});
     this.loginForm.setErrors(null);
@@ -73,35 +73,29 @@ export class LoginComponent implements OnInit {
   async login(data: Object){
     var err;
     [err, this.user] = await Util.to(User.LoginReg(data));
-    if(err){
-      if(err.message.includes('password') || err.message.includes('Password')){
+    if (err) {
+      if (err.message.includes('password') || err.message.includes('Password')) {
         this.throwInputError('password', err.message);
-      }else if(err.message === 'Not registered'){
-        this.title = "Please Register";
+      } else if(err.message === 'Not registered'){
+        this.title = 'Please Register';
         this.register = true;
-      }else if(err.message.includes('phone') || err.message.includes('email')){
-        this.throwInputError('unique', err.message);
-      }else{
+      } else {
         this.throwInputError('unique', err.message);
       }
+      return;
+    }
+    return this.user.to('list');
+  }
 
+  async create(data: Object) {
+    if (this.user_info.confirm_password != this.user_info.password) {
+      this.throwInputError('confirmPassword', 'Passwords do not match');
       return;
     }
 
-    return this.user.to('update');
-  }
-
-  async create(data: Object){
-    if(this.user_info.confirm_password!=this.user_info.password){
-      this.throwInputError('confirmPassword', 'Passwords do not match');
-      return
-    }
-
     let err;
-    [err, this.user] = await Util.to(User.CreateAccount(data))
-
+    [err, this.user] = await Util.to(User.CreateAccount(data));
     if(err) Util.TE(err);
-
     return this.user.to('update');
   }
 }

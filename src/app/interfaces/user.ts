@@ -6,4 +6,5 @@ export interface User {
   last?:string,
   auth?:boolean,
   token?:string,
+  data?: any
 }

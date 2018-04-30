@@ -4,18 +4,18 @@ import get = require('lodash.get');
 export class Model{
 
   public static model_name:string;
-  public static all_data:Array<object>;
-  public static SCHEMA:Object;
+  public static all_data: Array<object>;
+  public static SCHEMA: Object;
 
-  constructor(obj_data:any){
+  constructor(obj_data: any) {
     (<any>Object).assign(this, obj_data);
   }
 
-  getModelName(){
+  getModelName() {
     return this.static.getModelName();
   }
 
-  toObject(){
+  toObject() {
     let properties = Object.getOwnPropertyNames(this);
     let obj:any = {};
     for ( let i in properties){
@@ -57,7 +57,7 @@ export class Model{
     this.emit(['remove', 'change']);
   }
 
-  reload(){//updates instance storage from browser data
+  reload(){ // updates instance storage from browser data
     let model = this.static.findById(this.uniqueId(), true);
     let obj = model.toObject();
     (<any>Object).assign(this, obj);
@@ -154,9 +154,9 @@ export class Model{
   }
 
 
-  //***************************************
-  //*********** STATIC ********************
-  //***************************************
+  // ***************************************
+  // *********** STATIC ********************
+  // ***************************************
   static _instances: Array<Model> = [];
 
   static describe(): Array<string> {
@@ -165,10 +165,11 @@ export class Model{
     return properties;
   }
 
-  static setlocalStorage(name:string, data:Object){
+  static setlocalStorage(name:string, data:Object) {
+    // console.log("setlocalStorage", name);
+    // console.log("JSON.stringify(data)", JSON.stringify(data));
     localStorage.setItem(name, JSON.stringify(data));
   }
-
   static getlocalStorage(name:string): Object{
     return JSON.parse(localStorage.getItem(name) || '[]');
   }
@@ -266,7 +267,6 @@ export class Model{
     let old_data: Array<Object> = this.getAllData();
 
     let instance = this.schemaValidate(data);
-
     let primary_key = this.getPrimaryKey();
     if(!instance[primary_key]){
       let id:any = 1;

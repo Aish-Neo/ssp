@@ -4,13 +4,13 @@ import { Http, Headers }    from '@angular/http';
 import { environment }      from '../../environments/environment';
 import { User }             from './../models/user.model';
 // import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
-import { Router }           from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Env }              from './env.helper';
+import { Env } from './env.helper';
 
-import { MatDialog }              from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DialogDefaultComponent } from './../components/dialogs/dialog-default/dialog-default.component';
-import { DialogRemoveComponent }  from './../components/dialogs/dialog-remove/dialog-remove.component';
+import { DialogRemoveComponent } from './../components/dialogs/dialog-remove/dialog-remove.component';
 
 
 export class Util {
@@ -80,11 +80,11 @@ export class Util {
     })
   }
 
-  static to(promise, parse?) {//global function that will help use handle promise rejections, this article talks about it http://blog.grossman.io/how-to-write-async-await-without-try-catch-blocks-in-javascript/
+  static to(promise, parse?) {// global function that will help use handle promise rejections, this article talks about it http://blog.grossman.io/how-to-write-async-await-without-try-catch-blocks-in-javascript/
     return promise.then(data => {
       return [null, data];
     }).catch(err => {
-      if(parse===false) return [err];
+      if (parse === false) return [err];
       return [pe(err)]
     });
   }
@@ -104,12 +104,15 @@ export class Util {
   static getApiUrl(){
     return environment.apiUrl;
   }
+  static getEnvObj() {
+    return environment;
+  }
 
-  static apiHeaders(headers:any){
+  static apiHeaders(headers: any) {
     headers.append('Content-Type', 'application/json');
     let user:User = <User> User.Auth();
-    if(user){
-      let token:string = user.token;
+    if (user){
+      let token: string = user.token;
       headers.append('Authorization', token);
     }
     return headers;
@@ -124,7 +127,7 @@ export class Util {
 
   static async post(url, data){
     var headers = new Headers();
-    if(url[0]=='/'){
+    if (url[0] == '/'){
       url = this.getApiUrl()+url;
       headers = this.apiHeaders(headers);
     }
@@ -136,7 +139,7 @@ export class Util {
 
   static async put(url, data){
     var headers = new Headers();
-    if(url[0]=='/'){
+    if (url[0]=='/'){
       url = this.getApiUrl()+url;
       headers = this.apiHeaders(headers);
     }
@@ -170,7 +173,7 @@ export class Util {
 
   static async get(url){
     var headers = new Headers();
-    if(url[0]=='/'){
+    if(url[0] == '/'){
       url = this.getApiUrl()+url;
       headers = this.apiHeaders(headers);
     }

@@ -3,10 +3,10 @@
 
     <div fxLayout="row" fxLayoutAlign="center" class="mat-display-1">{{title}}</div>
     <div *ngIf="register===true" fxLayout="row" fxLayoutAlign="center"><a (click)="onTryLogin()">Click Here&nbsp;</a>to log in.</div>
-    <form (ngSubmit)="onSubmit()"  [formGroup]="loginForm">
+    <form [formGroup]="loginForm">
 
       <mat-form-field class="full-width">
-        <input formControlName="unique" [(ngModel)]="user_info.unique" matInput placeholder="Email or Phone" name="unique" [autofocus]="true">
+        <input formControlName="unique" [(ngModel)]="user_info.unique" matInput placeholder="Username" name="unique" [autofocus]="true">
         <!--<mat-hint>Errors appear instantly!</mat-hint>-->
         <mat-error>{{getInputErrorMessage('unique')}}</mat-error>
       </mat-form-field>
@@ -23,7 +23,7 @@
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutAlign="center center" >
-        <button mat-raised-button [disabled]="!loginForm.valid">Submit</button>
+        <button mat-raised-button [disabled]="!loginForm.valid" (click)="onSubmit()">Submit</button>
       </div>
     </form>
   </mat-card>

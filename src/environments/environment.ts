@@ -5,9 +5,8 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://127.0.0.1:3000',
-  facebook_app_id:'1234567890',
-
-  app_name:'Website DevName',
-  url:'http://localhost:1515',
+  apiUrl: 'http://localhost:4200',
+  app_name: 'Self Service Portal',
+  url: 'http://localhost:1515',
+  isApiReady: false
 };

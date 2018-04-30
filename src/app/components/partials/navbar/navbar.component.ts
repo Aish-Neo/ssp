@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Util } from '../../../helpers/util.helper';
 import { User } from '../../../models/user.model';
-import {Company} from "../../../models/company.model";
 
 export interface NavLinks {
   route?: string;
@@ -21,8 +20,7 @@ export class NavbarComponent implements OnInit {
   env;
   nav_links_user: Array<NavLinks> = [
     {route: 'user/update', name: 'Profile'},
-    {route: 'company/create', name: 'Create Company'},
-    {route: 'company/list', name: 'My Companies'}
+    {route: 'jobs/list', name: 'Jobs'}
   ];
   nav_links_no_user: Array<NavLinks> = [
     {route: 'home', name: 'Home'},
@@ -45,7 +43,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogout(){
-    if(User.Auth()) this.user.logout();
+    if (User.Auth()) this.user.logout();
   }
 
 }

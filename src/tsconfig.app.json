@@ -1,13 +1,24 @@
 {
+  "include": [
+    "*.ts",
+    "**/*.ts",
+    "../node_modules/axis-components/components/*.ts",
+    "../node_modules/axis-components/components/**/*.ts",
+    "../node_modules/axis-charts/charts/*.ts",
+    "../node_modules/axis-charts/charts/**/*.ts"
+  ],
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "es2015",
+    "module": "commonjs",
     "types": []
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "*.spec.ts",
+    "../node_modules/axis-components/**/*.spec.*",
+    "node_modules/axis-components/**/*.spec.*"
   ]
 }

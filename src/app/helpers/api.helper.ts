@@ -1,7 +1,6 @@
 import { AppInjector }      from './../app.module';
-import * as _               from 'underscore';
-import { LoginOptions }     from 'ngx-facebook';
-import {Util}                 from './util.helper';
+import * as _ from 'underscore';
+import {Util} from './util.helper';
 
 export class API {
 
